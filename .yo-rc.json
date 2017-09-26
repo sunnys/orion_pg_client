@@ -1,0 +1,16 @@
+{
+  "generator-ngx-rocket": {
+    "version": "2.1.3",
+    "props": {
+      "appName": "orion_pg_client",
+      "target": [
+        "web"
+      ],
+      "ui": "bootstrap",
+      "auth": true,
+      "projectName": "orion-pg-client",
+      "mobile": [],
+      "webview": []
+    }
+  }
+}
