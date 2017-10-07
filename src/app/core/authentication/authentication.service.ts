@@ -33,11 +33,11 @@ export class AuthenticationService {
    * @param {LoginContext} context The login parameters.
    * @return {Observable<Credentials>} The user credentials.
    */
-  login(context: LoginContext): Observable<Credentials> {
+  login(context: LoginContext, token: string): Observable<Credentials> {
     // Replace by proper authentication call
     const data = {
       username: context.username,
-      token: '123456'
+      token: token
     };
     this.setCredentials(data, context.remember);
     return Observable.of(data);

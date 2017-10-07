@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="container-fluid">
+          <div class="jumbotron text-center">
+            <h3>Flight Information</h3>
+            <table class="table table-bordered table-inverse" >
+              <tbody>
+                <tr>
+                  <td>Employee</td>
+                  <td>{{transact.employee}}</td>
+                </tr>
+                <tr>
+                  <td>Company</td>
+                  <td>{{transact.company}}</td>
+                </tr>
+                <tr>
+                  <td>Token</td>
+                  <td>{{transact.token}}</td>
+                </tr>
+                <tr>
+                  <td>Vendor</td>
+                  <td>{{transact.vendor}}</td>
+                </tr>
+                <tr>
+                  <td>Source</td>
+                  <td>{{transact.transaction_details[0].source}}</td>
+                </tr>
+                <tr>
+                  <td>Destination</td>
+                  <td>{{transact.transaction_details[0].destination}}</td>
+                </tr>
+                <tr>
+                  <td>Amount</td>
+                  <td>{{transact.transaction_details[0].amount}}</td>
+                </tr>  
+                <tr>
+                  <td>To Way</td>
+                  <td>{{transact.transaction_details[0].two_way}}</td>
+                </tr>
+                <tr>
+                  <td>Journey Date</td>
+                  <td>{{transact.transaction_details[0].journey_date}}</td>
+                </tr>
+                <tr>
+                  <td>Journey Time</td>
+                  <td>{{transact.transaction_details[0].journey_time}}</td>
+                </tr>
+                <tr>
+                  <td>Travel Time</td>
+                  <td>{{transact.transaction_details[0].travel_time}}</td>
+                </tr>
+                <tr>
+                  <td>Refundable</td>
+                  <td>{{transact.transaction_details[0].refundable}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="container container-fluid" *ngIf="requestForApprovalPage">
+              <button class="btn btn-primary w-100" type="submit">
+                <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
+                <span translate>Request for Approval</span>
+              </button>
+            </div>
+            
+            <div class="container container-fluid" *ngIf="approvalPage">
+              <div class="row">
+                <button class="btn btn-primary w-50" type="submit">
+                  <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
+                  <span translate>Approve</span>
+                </button>
+                <button class="btn btn-danger w-50" type="submit">
+                  <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
+                  <span translate>Reject</span>
+                </button>
+              </div>
+            </div>
+            <div class="container container-fluid" *ngIf="book">
+                <button class="btn btn-primary w-100" type="submit">
+                  <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
+                  <span translate>Book</span>
+                </button>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>  
+  

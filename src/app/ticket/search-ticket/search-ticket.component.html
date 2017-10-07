@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="raw"> 
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <form [formGroup]= "searchTicketForm" (ngSubmit)="searchTicket()">
+            <div class="form-group">
+              <label for="from-city">From</label>
+              <select class="form-control" id="from-city" #selectElem (chnage)="selectedCity.id" formControlName="fromCity">
+                <option *ngFor="let city of cities" value= "{{city.code }}">
+                  {{city.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="to-city">To</label>
+              <select class="form-control" id="to-city" #selectElem (chnage)="selectedToCity.id" formControlName="toCity">
+                <option *ngFor="let city of cities" value= "{{city.code }}">
+                  {{city.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">From Date</label>
+              <date-picker formControlName="fromDate"></date-picker>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">To Date</label>
+              <date-picker formControlName="toDate"></date-picker>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary w-100" type="submit">
+                  <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
+                  <span translate>Search</span>
+                </button>
+            </div>
+          </form>  
+    </div>
+  </div>
+</div>

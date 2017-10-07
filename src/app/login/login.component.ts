@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 import { Logger } from '../core/logger.service';
 import { I18nService } from '../core/i18n.service';
 import { AuthenticationService } from '../core/authentication/authentication.service';
-import { Angular2TokenService } from 'angular2-token';
+import { Angular2TokenService, SignInData } from 'angular2-token';
 
 const log = new Logger('Login');
 
@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
   error: string = null;
   loginForm: FormGroup;
   isLoading = false;
+  signInData: SignInData = <SignInData>{};
+  output: any;
 
   @Output() onFormResult = new EventEmitter<any>();
   constructor(private router: Router,
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private tokenAuthService: Angular2TokenService) {
     this.createForm();
+    // this.tokenAuthService.init();
   }
 
   ngOnInit() { }
@@ -38,32 +41,23 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.loginForm);
     this.isLoading = true;
-    // this.authenticationService.login(this.loginForm.value)
-    //   .finally(() => {
-    //     this.loginForm.markAsPristine();
-    //     this.isLoading = false;
-    //   })
-      // .subscribe(credentials => {
-      //   log.debug(`${credentials.username} successfully logged in`);
-      //   this.router.navigate(['/'], { replaceUrl: true });
-      // }, error => {
-      //   log.debug(`Login error: ${error}`);
-      //   this.error = error;
-      // });
-
+    this.output = null;
     this.tokenAuthService.signIn({email: this.loginForm.value.username, password: this.loginForm.value.password})
       .finally(() => {
         this.loginForm.markAsPristine();
         this.isLoading = false;
       })
       .subscribe( res => {
-        log.debug(res);
+        this.signInData = <SignInData>{};
+        this.output = res;
+        log.debug(res.json().auth_token);
         if(res.status == 200){
-          this.authenticationService.login(this.loginForm.value).
+          this.authenticationService.login(this.loginForm.value, res.json().auth_token).
           subscribe(credentials => {
             this.onFormResult.emit({signedIn: true, res});
             log.debug(`${credentials.username} successfully logged in`);
             log.debug(this.tokenAuthService.userSignedIn());
+            log.debug(this.tokenAuthService.currentAuthHeaders);
             this.router.navigate(['/'], { replaceUrl: true });
           }, error => {
             log.debug(`Login error: ${error}`);

@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="container-fluid">
+        <div class="jumbotron text-center">
+          <h3>Flight Information</h3>
+          <table class="table table-bordered table-inverse" >
+            <tbody>
+              <tr>
+                <td>Id</td>
+                <td>{{flight.id}}</td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td>{{flight.name}}</td>
+              </tr>
+              <tr>
+                <td>Source</td>
+                <td>{{flight.source}}</td>
+              </tr>
+              <tr>
+                <td>Source Code</td>
+                <td>{{flight.source_code}}</td>
+              </tr>
+              <tr>
+                <td>Destination</td>
+                <td>{{flight.destination}}</td>
+              </tr>
+              <tr>
+                <td>Destination Code</td>
+                <td>{{flight.destination_code}}</td>
+              </tr>
+              <tr>
+                <td>Amount</td>
+                <td>{{flight.amount}}</td>
+              </tr>  
+              <tr>
+                <td>To Way</td>
+                <td>{{flight.two_way}}</td>
+              </tr>
+              <tr>
+                <td>Journey Date</td>
+                <td>{{flight.journey_date}}</td>
+              </tr>
+              <tr>
+                <td>Journey Time</td>
+                <td>{{flight.journey_time}}</td>
+              </tr>
+              <tr>
+                <td>Travel Time</td>
+                <td>{{flight.travel_time}}</td>
+              </tr>
+              <tr>
+                <td>Refundable</td>
+                <td>{{flight.refundable}}</td>
+              </tr>
+              <tr>
+                <td>Vendor Code</td>
+                <td>{{flight.third_party_vendor_id}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="container container-fluid">
+            <button class="btn btn-primary w-100" type="submit">
+              <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
+              <span translate>Confirm</span>
+            </button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>  

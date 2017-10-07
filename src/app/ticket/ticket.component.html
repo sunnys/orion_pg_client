@@ -1,0 +1,51 @@
+<table class="table table-bordered" [mfData]="flights" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+        <tr>
+            <th style="width: 10%">
+                <mfDefaultSorter by="name">Flight Name</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+                <mfDefaultSorter by="email">Source</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+                <mfDefaultSorter by="age">Destination</mfDefaultSorter>
+            </th>
+            <th style="width: 20%">
+                <mfDefaultSorter by="city">Journey Date</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+                <mfDefaultSorter by="city">Refundable</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+                <mfDefaultSorter by="city">Two Way</mfDefaultSorter>
+            </th>
+            <th style="width: 10%">
+                <mfDefaultSorter by="city">Amount</mfDefaultSorter>
+            </th>
+            <th style="width: 20%">
+                <mfDefaultSorter by="city">Select</mfDefaultSorter>
+            </th>
+        </tr>
+        </thead>
+  <tbody>
+    <tr *ngFor="let flight of flights">
+      <td>{{flight.name}}</td>
+      <td>{{flight.source}}</td>
+      <td>{{flight.destination}}</td>
+      <td>{{flight.journey_date}}</td>
+      <td>{{flight.refundable}}</td>
+      <td>{{flight.two_way}}</td>
+      <td>{{flight.amount}}</td>
+      <td>
+        <button>Select</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+      <tr>
+          <td colspan="8">
+              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+          </td>
+      </tr>
+      </tfoot>
+</table>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,13 +14,20 @@ import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { TicketModule } from './ticket/ticket.module';
+import { TransactionModule } from './transaction/transaction.module';
 import { Angular2TokenService } from 'angular2-token';
+import { DatePickerModule } from 'angular-io-datepicker';
+import { OverlayModule } from 'angular-io-overlay';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
+    OverlayModule,
+    DatePickerModule,
     HttpModule,
     TranslateModule.forRoot(),
     NgbModule.forRoot(),
@@ -30,6 +37,8 @@ import { Angular2TokenService } from 'angular2-token';
     AboutModule,
     LoginModule,
     DashboardModule,
+    TicketModule,
+    TransactionModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],

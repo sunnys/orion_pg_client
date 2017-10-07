@@ -8,6 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShellComponent } from './shell/shell.component';
 import { HeaderComponent } from './shell/header/header.component';
 import { AuthenticationService } from './authentication/authentication.service';
+import { TicketService } from './../ticket/ticket.service';
+import { TransactionService } from './../transaction/transaction.service';
 import { AuthenticationGuard } from './authentication/authentication.guard';
 import { I18nService } from './i18n.service';
 import { HttpService } from './http/http.service';
@@ -32,6 +34,8 @@ export function createHttpService(backend: ConnectionBackend,
     ShellComponent
   ],
   providers: [
+    TransactionService,
+    TicketService,
     AuthenticationService,
     AuthenticationGuard,
     I18nService,
