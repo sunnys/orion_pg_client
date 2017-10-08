@@ -9,13 +9,16 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./show-transaction.component.scss']
 })
 export class ShowTransactionComponent implements OnInit {
-  @Input() transactionId: number;
+  error: string = null;
+  @Input() transactionId: string;
   @Input() requestForApprovalPage = true;
   @Input() approvalPage = false;
   @Input() book = false;
   private transact: any;
 
-  constructor(private transactionService: TransactionService, route: ActivatedRoute, router: Router) {
+  constructor(private transactionService: TransactionService,
+              private route: ActivatedRoute,
+              private router: Router) {
     this.transactionId = route.snapshot.params['id'];
    }
 
@@ -30,4 +33,59 @@ export class ShowTransactionComponent implements OnInit {
     return this.transactionService.showTransaction(tId);
   }
 
+  requestForApproval() {
+    this.transactionService.requestForApprovalTransaction(this.transactionId)
+    .finally(() => {
+      console.log('C : ', 'Some execution');
+    })
+    .subscribe( (res: any) => {
+      if (res) {
+        this.router.navigate(['/'], { replaceUrl: true });
+      }
+    }, (err: any) => {
+      this.error = err;
+    });
+  }
+
+  approveTransaction() {
+    this.transactionService.approveTransaction(this.transactionId)
+    .finally(() => {
+      console.log('C: ', 'Approving Transaction');
+    })
+    .subscribe( (res: any) => {
+      if (res) {
+        this.router.navigate(['/'], { replaceUrl: true });
+      }
+    }, (err: any) => {
+      this.error = err;
+    });
+  }
+
+  rejectTransaction() {
+    this.transactionService.rejectTransaction(this.transactionId)
+    .finally(() => {
+      console.log('C: ', 'Rejecting Transaction');
+    })
+    .subscribe( (res: any) => {
+      if (res) {
+        this.router.navigate(['/'], { replaceUrl: true });
+      }
+    }, (err: any) => {
+      this.error = err;
+    });
+  }
+
+  bookTransaction() {
+    this.transactionService.bookTransaction(this.transactionId)
+    .finally(() => {
+      console.log('C: ', 'Rejecting Transaction');
+    })
+    .subscribe( (res: any) => {
+      if (res) {
+        this.router.navigate(['/transactions/' + this.transactionId + '/generate_otp'], { replaceUrl: true });
+      }
+    }, (err: any) => {
+      this.error = err;
+    });
+  }
 }

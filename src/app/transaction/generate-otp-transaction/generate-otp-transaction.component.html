@@ -1,0 +1,13 @@
+<h4>
+  OTP Generation
+</h4>
+<p>
+  You will receive OTP on your 
+</p>
+<app-show-transaction [transactionId]='transactionId' [requestForApprovalPage] = 'requestForApprovalPage' [approvalPage]='approvalPage' [book]="book"></app-show-transaction>
+<div class="container container-fluid">
+  <button class="btn btn-primary w-100" (click)="generateOtp()">
+    <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
+    <span translate>Generate OTP</span>
+  </button>
+</div>

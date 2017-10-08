@@ -56,7 +56,7 @@
               </tbody>
             </table>
             <div class="container container-fluid" *ngIf="requestForApprovalPage">
-              <button class="btn btn-primary w-100" type="submit">
+              <button class="btn btn-primary w-100" (click)="requestForApproval()">
                 <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
                 <span translate>Request for Approval</span>
               </button>
@@ -64,18 +64,18 @@
             
             <div class="container container-fluid" *ngIf="approvalPage">
               <div class="row">
-                <button class="btn btn-primary w-50" type="submit">
+                <button class="btn btn-primary w-50" (click)="approveTransaction()">
                   <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
                   <span translate>Approve</span>
                 </button>
-                <button class="btn btn-danger w-50" type="submit">
+                <button class="btn btn-danger w-50" (click)="rejectTransaction()">
                   <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
                   <span translate>Reject</span>
                 </button>
               </div>
             </div>
             <div class="container container-fluid" *ngIf="book">
-                <button class="btn btn-primary w-100" type="submit">
+                <button class="btn btn-primary w-100" (click)="bookTransaction()">
                   <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
                   <span translate>Book</span>
                 </button>

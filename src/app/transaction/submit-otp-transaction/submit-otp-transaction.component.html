@@ -1,0 +1,19 @@
+<h4>
+  Verify OTP
+</h4>
+<p>
+  Please enter your OTP.
+</p>
+<app-show-transaction [transactionId]='transactionId' [requestForApprovalPage] = 'requestForApprovalPage' [approvalPage]='approvalPage' [book]="book"></app-show-transaction>
+<div class="container container-fluid">
+    <div class="form-group">
+      <label class="d-block">
+        <input #otp type="text" class="form-control" placeholder="otp"/>
+        <span hidden translate>OTP</span>
+      </label>
+      <button class="btn btn-primary w-100" (click)="submitOtp(otp.value)">
+          <i class="fa fa-cog fa-spin" [hidden]="!isLoading"></i>
+          <span translate>Verify OTP</span>
+        </button>
+    </div>
+</div>
