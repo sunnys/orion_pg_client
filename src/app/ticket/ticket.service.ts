@@ -15,11 +15,13 @@ export class TicketService {
   show_url= '';
   constructor(private http: Http, private authtokenService: AuthenticationService) { }
 
-  getFlightsInformation(): Observable<Flights> {
+  getFlightsInformation(from: any, to: string, from_date: any, to_date: any): Observable<Flights> {
     // tslint:disable-next-line:max-line-length
     const headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.authtokenService.credentials.token });
     const options = new RequestOptions({ headers: headers });
-    return this.http.post(this.url, {}, options)
+    console.log(from_date);
+    console.log(to_date);
+    return this.http.post(this.url, {from: from, to: to, from_date: from_date, to_date: to_date}, options)
     .map((res: Response) => res.json())
     .catch(() => Observable.of('Error, could not load flight :-('));
   }

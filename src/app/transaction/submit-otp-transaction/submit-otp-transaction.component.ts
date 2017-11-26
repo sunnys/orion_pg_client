@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { TransactionService } from './../transaction.service';
 import { Observable } from 'rxjs/Observable';
 import {ActivatedRoute, Router} from '@angular/router';
+import { FlashMessagesService } from 'ngx-flash-messages';
 
 @Component({
   selector: 'app-submit-otp-transaction',
@@ -20,7 +21,8 @@ export class SubmitOtpTransactionComponent implements OnInit {
 
   constructor(private transactionService: TransactionService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private flashMessagesService: FlashMessagesService) {
     this.transactionId = route.snapshot.params['id'];
   }
 
@@ -46,14 +48,26 @@ export class SubmitOtpTransactionComponent implements OnInit {
         if (res.code === '401') {
           console.log('Retry');
           if ( this.retryCntr > 3 ) {
-            this.router.navigate(['/transactions/' + this. transactionId + '/failed'], { replaceUrl: true });
+            // this.router.navigate(['/transactions/' + this. transactionId + '/failed'], { replaceUrl: true });
+            this.flashMessagesService.show('Some error occured!', {
+              classes: ['alert', 'alert-danger'], // You can pass as many classes as you need
+              timeout: 5000, // Default is 3000
+            });
           }
           this.retryCntr++;
         } else if (res.code === '200') {
+          this.flashMessagesService.show('OTP verified!!', {
+            classes: ['alert', 'alert-success'], // You can pass as many classes as you need
+            timeout: 5000, // Default is 3000
+          });
           this.router.navigate(['/transactions/' + this. transactionId + '/success'], { replaceUrl: true });
         }
       }
     }, (err: any) => {
+      this.flashMessagesService.show('Some error occured!', {
+        classes: ['alert', 'alert-danger'], // You can pass as many classes as you need
+        timeout: 5000, // Default is 3000
+      });
       this.error = err;
     });
   }

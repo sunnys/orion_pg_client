@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/finally';
 
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterStateSnapshot } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { environment } from '../../environments/environment';
@@ -31,12 +31,15 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private i18nService: I18nService,
               private authenticationService: AuthenticationService,
-              private tokenAuthService: Angular2TokenService) {
+              private tokenAuthService: Angular2TokenService,
+            ) {
     this.createForm();
     // this.tokenAuthService.init();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.router);
+  }
 
   login() {
     console.log(this.loginForm);
@@ -58,7 +61,12 @@ export class LoginComponent implements OnInit {
             log.debug(`${credentials.username} successfully logged in`);
             log.debug(this.tokenAuthService.userSignedIn());
             log.debug(this.tokenAuthService.currentAuthHeaders);
-            this.router.navigate(['/'], { replaceUrl: true });
+            log.debug(this.authenticationService.redirectUrl);
+            if (this.authenticationService.redirectUrl) {
+              this.router.navigate([this.authenticationService.redirectUrl], { replaceUrl: true });
+            } else {
+              this.router.navigate(['/'], { replaceUrl: true });
+            }
           }, error => {
             log.debug(`Login error: ${error}`);
             this.error = error;

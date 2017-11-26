@@ -31,11 +31,13 @@
     "angular-io-overlay": "^1.2.7",
     "angular2-datatable": "^0.6.0",
     "angular2-token": "^0.2.0-beta.12",
+    "angular4-notify": "^1.2.0",
     "bootstrap": "4.0.0-beta",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "ng": "0.0.0-rc6",
+    "ngx-flash-messages": "^1.0.4",
     "rxjs": "^5.4.0",
     "zone.js": "^0.8.14"
   },

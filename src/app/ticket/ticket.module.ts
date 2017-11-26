@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { DatePickerModule } from 'angular-io-datepicker';
 import { OverlayModule } from 'angular-io-overlay';
+import { FlashMessagesModule, FlashMessagesService } from 'ngx-flash-messages';
 
 import { TicketRoutingModule } from './ticket-routing.module';
 import { TicketComponent } from './ticket.component';
@@ -21,8 +22,12 @@ import { ShowTicketComponent } from './show-ticket/show-ticket.component';
     OverlayModule,
     DatePickerModule,
     DataTableModule,
+    FlashMessagesModule,
     TicketRoutingModule
   ],
-  declarations: [TicketComponent, SearchTicketComponent, ShowTicketComponent]
+  declarations: [TicketComponent, SearchTicketComponent, ShowTicketComponent],
+  providers: [
+    FlashMessagesService
+  ]
 })
 export class TicketModule { }

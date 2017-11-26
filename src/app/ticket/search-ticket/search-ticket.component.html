@@ -1,19 +1,19 @@
 <div class="container">
   <div class="raw"> 
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <form [formGroup]= "searchTicketForm" (ngSubmit)="searchTicket()">
+        <form [formGroup]= "searchTicketForm" (ngSubmit)="searchTicket(searchTicketForm)">
             <div class="form-group">
-              <label for="from-city">From</label>
-              <select class="form-control" id="from-city" #selectElem (chnage)="selectedCity.id" formControlName="fromCity">
-                <option *ngFor="let city of cities" value= "{{city.code }}">
+              <label for="fromCity">From</label>
+              <select class="form-control" id="fromCity" (change)="onChange($event.target.value)" formControlName="fromCity">
+                <option *ngFor="let city of cities" [value]= "city.id" [ngValue]="city.code">
                   {{city.name}}
                 </option>
               </select>
             </div>
             <div class="form-group">
-              <label for="to-city">To</label>
-              <select class="form-control" id="to-city" #selectElem (chnage)="selectedToCity.id" formControlName="toCity">
-                <option *ngFor="let city of cities" value= "{{city.code }}">
+              <label for="toCity">To</label>
+              <select class="form-control" id="toCity" #selectElem (change)="city" formControlName="toCity">
+                <option *ngFor="let city of cities" [value]= "city.id" [ngValue]="city">
                   {{city.name}}
                 </option>
               </select>

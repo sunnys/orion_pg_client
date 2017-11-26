@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { TransactionService } from './../transaction.service';
 import { Observable } from 'rxjs/Observable';
 import {ActivatedRoute, Router} from '@angular/router';
+import { FlashMessagesService } from 'ngx-flash-messages';
 
 @Component({
   selector: 'app-generate-otp-transaction',
@@ -18,7 +19,8 @@ export class GenerateOtpTransactionComponent implements OnInit {
 
   constructor(private transactionService: TransactionService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private flashMessagesService: FlashMessagesService) {
     this.transactionId = route.snapshot.params['id'];
   }
 
@@ -40,9 +42,17 @@ export class GenerateOtpTransactionComponent implements OnInit {
     })
     .subscribe( (res: any) => {
       if (res) {
+        this.flashMessagesService.show('Please enter the OTP, you will receive it on your registered email!', {
+          classes: ['alert', 'alert-success'], // You can pass as many classes as you need
+          timeout: 5000, // Default is 3000
+        });
         this.router.navigate(['/transactions/' + this. transactionId + '/submit_otp'], { replaceUrl: true });
       }
     }, (err: any) => {
+      this.flashMessagesService.show('Some error occured!', {
+        classes: ['alert', 'alert-danger'], // You can pass as many classes as you need
+        timeout: 5000, // Default is 3000
+      });
       this.error = err;
     });
   }

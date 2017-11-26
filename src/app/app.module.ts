@@ -19,7 +19,8 @@ import { TransactionModule } from './transaction/transaction.module';
 import { Angular2TokenService } from 'angular2-token';
 import { DatePickerModule } from 'angular-io-datepicker';
 import { OverlayModule } from 'angular-io-overlay';
-
+import {NotificationsModule, NotificationsService} from 'angular4-notify';
+import { FlashMessagesModule, FlashMessagesService } from 'ngx-flash-messages';
 
 @NgModule({
   imports: [
@@ -39,11 +40,15 @@ import { OverlayModule } from 'angular-io-overlay';
     DashboardModule,
     TicketModule,
     TransactionModule,
+    NotificationsModule,
+    FlashMessagesModule,
     AppRoutingModule
   ],
   declarations: [AppComponent],
   providers: [
-    Angular2TokenService
+    Angular2TokenService,
+    NotificationsService,
+    FlashMessagesService
   ],
   bootstrap: [AppComponent]
 })

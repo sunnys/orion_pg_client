@@ -22,8 +22,8 @@ const credentialsKey = 'credentials';
 @Injectable()
 export class AuthenticationService {
 
+  public redirectUrl: string;
   private _credentials: Credentials;
-
   constructor() {
     this._credentials = JSON.parse(sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey));
   }

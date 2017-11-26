@@ -4,6 +4,8 @@ import { TicketRoutingModule } from './transaction-routing.module';
 import { TransactionComponent } from './transaction.component';
 import { ShowTransactionComponent } from './show-transaction/show-transaction.component';
 import { DataTableModule } from 'angular2-datatable';
+import {NotificationsModule, NotificationsService} from 'angular4-notify';
+import { FlashMessagesModule, FlashMessagesService } from 'ngx-flash-messages';
 import { ApproveTransactionComponent } from './approve-transaction/approve-transaction.component';
 import { BookTransactionComponent } from './book-transaction/book-transaction.component';
 import { GenerateOtpTransactionComponent } from './generate-otp-transaction/generate-otp-transaction.component';
@@ -15,7 +17,9 @@ import { SubmitOtpTransactionComponent } from './submit-otp-transaction/submit-o
   imports: [
     CommonModule,
     TicketRoutingModule,
-    DataTableModule
+    DataTableModule,
+    NotificationsModule,
+    FlashMessagesModule
   ],
   declarations: [
     TransactionComponent,
@@ -26,6 +30,10 @@ import { SubmitOtpTransactionComponent } from './submit-otp-transaction/submit-o
     SuccessfulTransactionComponent,
     FailedTransactionComponent,
     SubmitOtpTransactionComponent
-  ]
+  ],
+  providers: [
+    NotificationsService,
+    FlashMessagesService
+  ],
 })
 export class TransactionModule { }

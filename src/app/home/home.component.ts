@@ -3,6 +3,7 @@ import 'rxjs/add/operator/finally';
 import { Component, OnInit } from '@angular/core';
 
 import { QuoteService } from './quote.service';
+import { FlashMessagesService } from 'ngx-flash-messages';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +14,17 @@ export class HomeComponent implements OnInit {
 
   quote: string;
   isLoading: boolean;
+  private transacts: any;
 
-  constructor(private quoteService: QuoteService) {}
+  constructor(private flashMessagesService: FlashMessagesService, private quoteService: QuoteService) {}
 
   ngOnInit() {
     this.isLoading = true;
-    this.quoteService.getRandomQuote({ category: 'dev' })
-      .finally(() => { this.isLoading = false; })
-      .subscribe((quote: string) => { this.quote = quote; });
+    this.quoteService.getAllOfMyTransaction()
+    .finally(() => { this.isLoading = false; })
+    .subscribe((transacts) => {
+      this.transacts = transacts;
+    });
   }
 
 }

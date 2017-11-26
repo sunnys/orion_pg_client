@@ -5,13 +5,44 @@
       <span translate>Welcome to Orion Payment Gateway</span>
     </h1>
     <app-loader [isLoading]="isLoading"></app-loader>
-    <q [hidden]="isLoading">{{quote}}</q>
   </div>
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1>Book Travel</h1>
       <p class="lead">TPlease click the book travel button to start booking your travel.</p>
-      <a class="btn btn-info" routerLink="/dashboard" routerLinkActive="active">Book Travel</a>
+      <a class="btn btn-info" routerLink="/tickets/search_ticket" routerLinkActive="active">Book Travel</a>
     </div>
   </div>
+  <!-- <div class="jumbotron jumbotron-fluid"> -->
+    <div class="container">
+      <h5>Transaction History</h5>
+      <table class="table table-bordered" [mfData]="transacts" #mf="mfDataTable" [mfRowsOnPage]="5">
+          <thead>
+            <tr>
+                <th style="width: 10%">
+                    <mfDefaultSorter by="email">Source</mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                    <mfDefaultSorter by="age">Destination</mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                    <mfDefaultSorter by="city">Journey Date</mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                    <mfDefaultSorter by="city">Amount</mfDefaultSorter>
+                </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let flight of transacts">
+                <td>{{flight.source}}</td>
+                <td>{{flight.destination}}</td>
+                <td>{{flight.journey_date}}</td>
+                <td>{{flight.amount}}</td>
+              </tr>
+            </tbody>
+      </table>
+    
+    </div>
+  <!-- </div> -->
 </div>

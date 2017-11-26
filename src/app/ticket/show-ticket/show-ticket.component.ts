@@ -12,7 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ShowTicketComponent implements OnInit {
   @Input() flightId: number;
   private flight: Flight;
-  constructor(private myTicketService: TicketService, route: ActivatedRoute, router: Router) {
+  constructor(private myTicketService: TicketService, route: ActivatedRoute, private router: Router) {
     this.flightId = route.snapshot.params['id'];
   }
 
@@ -27,8 +27,10 @@ export class ShowTicketComponent implements OnInit {
   }
 
   selectFlight(flightId: string) {
+    console.log('--------------------------------------');
     this.myTicketService.selectFlight(flightId).subscribe(transact => {
       console.log('Transaction : ', transact);
+      this.router.navigate(['/transactions/' + transact.transact_id ], { replaceUrl: true  });
     },
     err => {
       console.log('err : ', err);
