@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
   version: '(dev)',
-  serverUrl: 'http://localhost:3000',
+  // serverUrl: 'http://localhost:3000',
+  serverUrl: 'http://api.sunnyssingh.in',
   defaultLanguage: 'en-US',
   supportedLanguages: [
     'en-US',
